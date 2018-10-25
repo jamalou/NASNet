@@ -29,7 +29,7 @@ def which_set(filename, validation_percentage):
     """
     base_name = os.path.basename(filename)
     # This looks a bit magical, but we need to decide whether this file should
-    # go into the training, testing, or validation sets, and we want to keep
+    # go into the training or validation sets, and we want to keep
     # existing files in the same set even if more files are subsequently
     # added.
     # To do that, we need a stable way of deciding based on just the file name
