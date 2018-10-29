@@ -8,6 +8,10 @@ from six.moves import xrange
 from six.moves import urllib
 import sys
 
+from imageio import imread
+from scipy import misc
+from skimage.transform import resize
+
 import os
 from PIL import Image
 import numpy as np
@@ -43,20 +47,6 @@ def which_set(filename, validation_percentage):
         result = 'training'
     return result
 
-
-# In[4]:
-
-
-def PIL2array(img):
-    """Convert a PIL image to a numpy ndarray
-    Args:
-    img: PIL image
-    Returns:
-    Numpy array holding the image pixels' values floats between 0.0 and 1.0.
-    """
-    return np.array(img.getdata(), np.float32).reshape(img.size[1], img.size[0], 3) / 255.
-
-
 def load_img_file(filename, size):
     """Loads an image file and returns a .
     Args:
@@ -64,7 +54,7 @@ def load_img_file(filename, size):
     Returns:
     Numpy array holding the image pixels' values floats between 0.0 and 1.0.
     """
-    return PIL2array(Image.open(filename).resize(size))
+    return misc.imresize(imread(filename), size=size) / 255.
 
 class ImageGenerator(object):
     """Handles loading, partitioning, and preparing training data."""
