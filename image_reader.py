@@ -155,7 +155,8 @@ class ImageGenerator(object):
           List of sample data and list of labels in one-hot form.
         """
         assert mode in ['training', 'validation']
-        if mode == 'training' and self.batch_index[mode] == 0:
+        # Shuffle data at epoch start.
+        if self.batch_index[mode] == 0:
             random.shuffle(self.data_index[mode])
         # Pick one of the partitions to choose samples from.
         candidates = self.data_index[mode]
