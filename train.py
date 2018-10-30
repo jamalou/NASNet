@@ -84,8 +84,8 @@ def train_network(n_epochs=10, start_checkpoint=None):
 
     return checkpoint_path
 
-data_url = "" 
-data_dir = 'flowers_data/flower_photos'
+data_url = "http://download.tensorflow.org/example_images/flower_photos.tgz" 
+data_dir = '.'
 
 
 imgen = image_reader.ImageGenerator(data_url, data_dir, validation_percentage=20, batch_size=32)
